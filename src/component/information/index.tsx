@@ -12,9 +12,13 @@ export const Information1 = () => {
       <div className="info-card">
         <div className="label">식사 안내</div>
         <div className="content">
-          식사시간: 12시 30분 ~ 14시 30분
+          식사시간: 11시 00분 ~ 13시 00분
           <br />
-          장소: 지하 1층 연회장
+          장소: 별관 3층 더파티 울산신선도원점
+          <br />
+          식사 시간은 예식 시작
+          <br />
+          시간부터 <b>2시간</b> 이용 가능합니다,
         </div>
       </div>
     </>

@@ -37,19 +37,20 @@ const NaverMap = () => {
   }
 
   useEffect(() => {
-    if (naver) {
+    if (!ref.current) return
+    const script = document.createElement('script')
+    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}`
+    script.async = true
+    script.onload = () => {
       const map = new naver.maps.Map(ref.current, {
         center: WEDDING_HALL_POSITION,
         zoom: 17,
       })
-
       new naver.maps.Marker({ position: WEDDING_HALL_POSITION, map })
-
-      return () => {
-        map.destroy()
-      }
     }
-  }, [naver])
+    document.head.appendChild(script)
+  }, [])
+
 
   return (
     <>

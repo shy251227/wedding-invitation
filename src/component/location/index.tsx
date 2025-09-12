@@ -61,7 +61,7 @@ export const Location = () => {
           <div className="content">
               ※ 식사 고객 <b>3시간 무료</b> 주차 가능하며,
               <br />
-              주차권은 답례품 교환처 및 뷔페 입구에 준비되어있습니다.
+              주차권은 <b>답례품 교환처</b> 및 <b>뷔페 입구</b>에 준비되어있습니다.
           </div>
         </div>
       </LazyDiv>

@@ -12,8 +12,8 @@ export { dayjs }
 export const WEDDING_DATE = dayjs.tz("2025-12-27 11:00", "Asia/Seoul")
 export const HOLIDAYS = [15]
 
-export const LOCATION = "W시티컨벤션 울산웨딩홀"
-export const LOCATION_ADDRESS = "서울시 관악구 관악로 1, 연구공원 본관 1층"
+export const LOCATION = "W시티컨벤션 울산 웨딩홀"
+export const LOCATION_ADDRESS = "울산 북구 진장17길 10"
 
 export const SHARE_ADDRESS = LOCATION
 export const SHARE_ADDRESS_TITLE = LOCATION
@@ -26,8 +26,8 @@ export const KMAP_PLACE_ID = 1099072690
 export const BRIDE_FULLNAME = "정하윤"
 export const BRIDE_FIRSTNAME = "하윤"
 export const BRIDE_TITLE = "장녀"
-export const BRIDE_FATHER = "정○○"
-export const BRIDE_MOTHER = "김○○"
+export const BRIDE_FATHER = "정길모"
+export const BRIDE_MOTHER = "김차련"
 export const BRIDE_INFO = [
   {
     relation: "신부",

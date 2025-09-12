@@ -23,7 +23,7 @@ export const Location = () => {
           <div className="heading">대중교통</div>
           <div />
           <div className="content">
-            * 버스 ㅇ
+            * 버스 이용 시
             <br />
             지하철 2호선 <b>낙성대역 4번출구</b> 나와서
             <br />

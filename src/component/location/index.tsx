@@ -23,7 +23,7 @@ export const Location = () => {
           <div className="heading">대중교통</div>
           <div />
           <div className="content">
-            * 지하철 이용시
+            * 버스 ㅇ
             <br />
             지하철 2호선 <b>낙성대역 4번출구</b> 나와서
             <br />
@@ -58,7 +58,7 @@ export const Location = () => {
           <div className="content">
             네이버 지도, 카카오 네비, 티맵 등 이용
             <br />
-            <b>서울대학교 연구공원 웨딩홀</b> 검색
+            <b>W시티컨베션 울산 웨딩홀</b> 검색
             <br />
             - 주차 요금은 무료입니다.
             <br />

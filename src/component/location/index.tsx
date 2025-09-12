@@ -25,7 +25,6 @@ export const Location = () => {
           <div className="content">
             * 울산 시내 버스 이용 시
             <br />
-            울산시내버스
             <br />
              - 신복 로터리(114, 724, 1114번)
             <br />
@@ -39,6 +38,11 @@ export const Location = () => {
           <div />
           <div className="content">
             * KTX 울산역 이용 시
+            <br />
+            - 5002번 리무진버스 <b>농심 메가마트 앞</b>에서 하차
+            <br />
+            - 5003번 리무진버스 <b>학성공원</b>에서 하차 후 <b>721번 환승</b>
+            <br />
           </div>
         </div>
         <div className="location-info">
@@ -48,14 +52,12 @@ export const Location = () => {
           <div className="heading">자가용</div>
           <div />
           <div className="content">
-            네이버 지도, 카카오 네비, 티맵 등 이용
+            네이버 지도, 카카오 네비, 티맵 등 이용시
             <br />
             <b>W시티컨베션 울산 웨딩홀</b> 검색
             <br />
             <br />
-            신선도원몰 <b>별관 1층부터 6층까지</b>
-            <br />
-            주차 가능합니다.
+            신선도원몰 <b>별관 1층부터 6층까지</b> 주차 가능합니다.
           </div>
           <div />
           <div className="content">

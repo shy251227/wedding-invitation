@@ -27,7 +27,7 @@ export const BRIDE_FULLNAME = "정하윤"
 export const BRIDE_FIRSTNAME = "하윤"
 export const BRIDE_TITLE = "딸"
 export const BRIDE_FATHER = "정길모"
-export const BRIDE_MOTHER = "김차련"
+export const BRIDE_MOTHER = "김차연"
 export const BRIDE_INFO = [
   {
     relation: "신부",

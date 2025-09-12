@@ -14,7 +14,7 @@ export const Information1 = () => {
         <div className="content">
           식사시간: 11시 00분 ~ 13시 00분
           <br />
-          장소: 별관 3층 더파티 울산신선도원점
+          장소: 별관 <b>3층</b> 더파티 울산신선도원점
           <br />
           식사 시간은 예식 시작
           <br />

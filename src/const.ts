@@ -12,7 +12,7 @@ export { dayjs }
 export const WEDDING_DATE = dayjs.tz("2025-12-27 11:00", "Asia/Seoul")
 export const HOLIDAYS = [15]
 
-export const LOCATION = "W시티컨벤션 울산 웨딩홀"
+export const LOCATION = "W시티 컨벤션 울산 웨딩홀"
 export const LOCATION_ADDRESS = "울산광역시 북구 진장 17길 7 별관7층"
 
 export const SHARE_ADDRESS = LOCATION

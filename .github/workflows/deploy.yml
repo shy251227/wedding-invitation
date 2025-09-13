@@ -18,15 +18,21 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      VITE_NAVER_MAP_CLIENT_ID: ${{ secrets.VITE_NAVER_MAP_CLIENT_ID }}
-      VITE_KAKAO_SDK_JS_KEY: ${{ secrets.VITE_KAKAO_SDK_JS_KEY }}
-      VITE_SERVER_URL: ${{ vars.VITE_SERVER_URL }}
-      VITE_STATIC_ONLY: ${{ vars.VITE_STATIC_ONLY }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
+      - name: Setup Environment Variables
+        run: |
+          echo "VITE_NAVER_MAP_CLIENT_ID=$VITE_NAVER_MAP_CLIENT_ID
+          VITE_KAKAO_SDK_JS_KEY=$VITE_KAKAO_SDK_JS_KEY
+          VITE_SERVER_URL=$VITE_SERVER_URL
+          VITE_STATIC_ONLY=$VITE_STATIC_ONLY" >> .env
+        env:
+          VITE_NAVER_MAP_CLIENT_ID: ${{ secrets.VITE_NAVER_MAP_CLIENT_ID }}
+          VITE_KAKAO_SDK_JS_KEY: ${{ secrets.VITE_KAKAO_SDK_JS_KEY }}
+          VITE_SERVER_URL: ${{ vars.VITE_SERVER_URL }}
+          VITE_STATIC_ONLY: ${{ vars.VITE_STATIC_ONLY }}
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@v4
@@ -35,11 +41,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Debug env (확인용)
-        run: |
-          echo "VITE_STATIC_ONLY=$VITE_STATIC_ONLY"
-          echo "VITE_SERVER_URL=$VITE_SERVER_URL"
 
       - name: Build
         run: npm run build

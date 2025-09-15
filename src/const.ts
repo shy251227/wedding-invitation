@@ -50,28 +50,28 @@ export const BRIDE_INFO = [
   },
 ]
 
-export const GROOM_FULLNAME = "차승훈"
-export const GROOM_FIRSTNAME = "승훈"
+export const GROOM_FULLNAME = "차00"
+export const GROOM_FIRSTNAME = "00"
 export const GROOM_TITLE = "아들"
-export const GROOM_FATHER = "차호준"
-export const GROOM_MOTHER = "남미현"
+export const GROOM_FATHER = "차00"
+export const GROOM_MOTHER = "남00"
 export const GROOM_INFO = [
   {
     relation: "신랑",
     name: GROOM_FULLNAME,
-    phone: "010-5513-7567",
+    phone: "010-0000-0000",
     account: "하나은행 00000000000000",
   },
   {
     relation: "신랑 아버지",
     name: GROOM_FATHER,
-    phone: "010-6653-7567",
+    phone: "010-0000-0000",
     account: "신한은행 000000000000",
   },
   {
     relation: "신랑 어머니",
     name: GROOM_MOTHER,
-    phone: "010-5128-7567",
+    phone: "010-0000-0000",
     account: "국민은행 000000000000",
   },
 ]

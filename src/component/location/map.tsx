@@ -11,10 +11,10 @@ import {
   NMAP_PLACE_ID,
   WEDDING_HALL_POSITION,
 } from "../../const"
-import { VITE_NAVER_MAP_CLIENT_ID } from "../../env"
+import { NAVER_MAP_CLIENT_ID } from "../../env"
 
 export const Map = () => {
-  return VITE_NAVER_MAP_CLIENT_ID ? <NaverMap /> : <div>Map is not available</div>
+  return NAVER_MAP_CLIENT_ID ? <NaverMap /> : <div>Map is not available</div>
 }
 
 const NaverMap = () => {

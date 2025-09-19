@@ -34,11 +34,12 @@ export const ShareButton = () => {
                 "\n" +
                 LOCATION,
               imageUrl:
-                window.location.protocol +
+                "https://shy251227.github.io/wedding-invitation/preview_image_v3.png",
+                /*window.location.protocol +
                 "//" +
                 window.location.host +
                 baseUrl +
-                "/preview_image.png",
+                "/preview_image.png",*/
               link: {
                 mobileWebUrl:
                   window.location.protocol +

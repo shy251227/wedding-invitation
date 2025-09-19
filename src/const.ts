@@ -19,14 +19,14 @@ export const LOCATION_ADDRESS = "울산광역시 북구 진장 17길 7 별관7�
 export const SHARE_ADDRESS = LOCATION
 export const SHARE_ADDRESS_TITLE = LOCATION
 
-export const WEDDING_HALL_POSITION = [129.356197, 35.562663]
+export const WEDDING_HALL_POSITION = [35.56147325386747, 129.35498417093763]
 
 export const NMAP_PLACE_ID = 1946480978
 export const KMAP_PLACE_ID = 1099072690
 
 //<정하윤> <정길모> <김차연>
 export const BRIDE_FULLNAME = "정00"
-export const BRIDE_FIRSTNAME = "하윤"
+export const BRIDE_FIRSTNAME = "00"
 export const BRIDE_TITLE = "딸"
 export const BRIDE_FATHER = "정00"
 export const BRIDE_MOTHER = "김00"

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { useKakao } from "../store"
+import { useKakao, useNaver } from "../store"
 import nmapIcon from "../../icons/nmap-icon.png"
 import knaviIcon from "../../icons/knavi-icon.png"
 import tmapIcon from "../../icons/tmap-icon.png"
@@ -13,17 +13,12 @@ import {
 } from "../../const"
 import { NAVER_MAP_CLIENT_ID } from "../../env"
 
-declare global {
-  interface Window {
-    naver: any
-  }
-}
-
 export const Map = () => {
   return NAVER_MAP_CLIENT_ID ? <NaverMap /> : <div>Map is not available</div>
 }
 
 const NaverMap = () => {
+  const naver = useNaver()
   const kakao = useKakao()
   const ref = useRef<HTMLDivElement>(null)
   const [locked, setLocked] = useState(true)
@@ -41,30 +36,20 @@ const NaverMap = () => {
     }
   }
 
-  // ✅ 네이버 지도 SDK 동적 로드
   useEffect(() => {
-    if (document.getElementById("naver-map-sdk")) {
-      initMap()
-      return
-    }
-
-    const script = document.createElement("script")
-    script.id = "naver-map-sdk"
-    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}`
-    script.async = true
-    script.onload = initMap
-    document.head.appendChild(script)
-
-    function initMap() {
-      if (!ref.current || !window.naver) return
-      const map = new window.naver.maps.Map(ref.current, {
+    if (naver) {
+      const map = new naver.maps.Map(ref.current, {
         center: WEDDING_HALL_POSITION,
         zoom: 17,
       })
 
-      new window.naver.maps.Marker({ position: WEDDING_HALL_POSITION, map })
+      new naver.maps.Marker({ position: WEDDING_HALL_POSITION, map })
+
+      return () => {
+        map.destroy()
+      }
     }
-  }, [])
+  }, [naver])
 
   return (
     <>
@@ -108,16 +93,9 @@ const NaverMap = () => {
         >
           {locked ? <LockIcon /> : <UnlockIcon />}
         </button>
-        <div
-          className="map-inner"
-          ref={ref}
-          style={{ width: "100%", height: "400px" }}
-        ></div>
+        <div className="map-inner" ref={ref}></div>
       </div>
-
-      {/* 네비 버튼 */}
       <div className="navigation">
-        {/* 네이버 지도 */}
         <button
           onClick={() => {
             switch (checkDevice()) {
@@ -137,8 +115,6 @@ const NaverMap = () => {
           <img src={nmapIcon} alt="naver-map-icon" />
           네이버 지도
         </button>
-
-        {/* 카카오 내비 */}
         <button
           onClick={() => {
             switch (checkDevice()) {
@@ -164,8 +140,6 @@ const NaverMap = () => {
           <img src={knaviIcon} alt="kakao-navi-icon" />
           카카오 내비
         </button>
-
-        {/* 티맵 */}
         <button
           onClick={() => {
             switch (checkDevice()) {

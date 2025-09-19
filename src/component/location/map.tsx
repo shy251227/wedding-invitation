@@ -218,7 +218,8 @@ const NaverMap = () => {
   useEffect(() => {
     // 네이버 지도 스크립트 로딩
     const script = document.createElement("script")
-    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${import.meta.env.VITE_NAVER_MAP_CLIENT_ID}`
+    //ncpKeyId >> ncpClientId
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${import.meta.env.VITE_NAVER_MAP_CLIENT_ID}`
     script.async = true
     script.onload = () => {
       // 스크립트 로딩 완료 후 지도 생성
@@ -338,8 +339,8 @@ const NaverMap = () => {
               case "ios":
               case "android": {
                 const params = new URLSearchParams({
-                  goalx: WEDDING_HALL_POSITION[0].toString(),
-                  goaly: WEDDING_HALL_POSITION[1].toString(),
+                  goalx: WEDDING_HALL_POSITION[1].toString(),
+                  goaly: WEDDING_HALL_POSITION[0].toString(),
                   goalName: LOCATION,
                 })
                 window.open(`tmap://route?${params.toString()}`, "_self")

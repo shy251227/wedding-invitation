@@ -24,15 +24,6 @@ export const ShareButton = () => {
           }
 
           kakao.Share.sendDefault({
-            objectType: "feed",
-            content: {
-              // 👇 여기를 수정하세요!
-              title: "이환 ❤️ 하윤 결혼합니다.",
-              description: "소중한 분들을 초대합니다.",
-              imageUrl:
-                "https://shy251227.github.io/wedding-invitation/preview_image_v3.png",
-              // 👆 여기까지
-          /*kakao.Share.sendDefault({
             objectType: "location",
             address: SHARE_ADDRESS,
             addressTitle: SHARE_ADDRESS_TITLE,
@@ -47,7 +38,7 @@ export const ShareButton = () => {
                 "//" +
                 window.location.host +
                 baseUrl +
-                "/preview_image.png",*/
+                "/preview_image.png",
               link: {
                 mobileWebUrl:
                   window.location.protocol +

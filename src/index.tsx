@@ -5,12 +5,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ModalProvider } from "./component/modal";
 import { StoreProvider } from "./component/store";
-// ❗ 추가: 카카오 SDK 초기화 함수를 불러옵니다.
+// ❗ 필수: 카카오 SDK 초기화 함수를 불러옵니다.
 import { initializeKakao } from "./kakao";
-// ❗ 추가: .env 파일에서 카카오 SDK 키를 불러옵니다.
+// ❗ 필수: .env 파일에서 카카오 SDK 키를 불러옵니다.
 import { KAKAO_SDK_JS_KEY } from "./env";
 
-// ❗ 추가: KAKAO_SDK_JS_KEY가 존재하면 카카오 SDK를 초기화합니다.
+// ❗ 카카오 SDK 키가 존재하면 initializeKakao 함수를 호출하여 SDK를 초기화합니다.
 if (KAKAO_SDK_JS_KEY) {
   initializeKakao(KAKAO_SDK_JS_KEY);
 } else {

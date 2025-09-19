@@ -43,7 +43,7 @@ const NaverMap = () => {
   useEffect(() => {
     const script = document.createElement("script")
     //ncpKeyId >> ncpClientId
-    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${
         import.meta.env.VITE_NAVER_MAP_CLIENT_ID}`
     script.async = true
     script.onload = () => {

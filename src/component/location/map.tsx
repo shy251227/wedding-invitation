@@ -107,10 +107,10 @@ const NaverMap = () => {
           }}
         >
           {locked ? <LockIcon /> : <UnlockIcon />}
-        </button>
+        </button>*/
 
         { /*ref를 map-inner가 아닌 map-wrapper의 자식 div에 직접 연결*/ }
-        <div className="map-inner" ref={mapElement} style={{ height: '100%' }}></div>
+        /*<div className="map-inner" ref={mapElement} style={{ height: '100%' }}></div>
       </div>
       <div className="navigation">
         <button

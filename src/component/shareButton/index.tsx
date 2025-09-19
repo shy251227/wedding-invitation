@@ -34,7 +34,7 @@ export const ShareButton = () => {
                 "\n" +
                 LOCATION,
               imageUrl:
-                "https://shy251227.github.io/wedding-invitation/preview_image_v3.png",
+                "https://shy251227.github.io/wedding-invitation/preview_image.png",
                 /*window.location.protocol +
                 "//" +
                 window.location.host +

@@ -50,7 +50,7 @@ const NaverMap = () => {
 
     const script = document.createElement("script")
     script.id = "naver-map-sdk"
-    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${NAVER_MAP_CLIENT_ID}`
+    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}`
     script.async = true
     script.onload = initMap
     document.head.appendChild(script)

@@ -11,6 +11,27 @@ import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
 import { STATIC_ONLY } from "./env"
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
+function App() {
+  useEffect(() => {
+    // Kakao SDK가 로드되었는지, 그리고 초기화되지 않았는지 확인합니다.
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      // .env 파일에서 JavaScript 키를 가져옵니다.
+      const jsKey = import.meta.env.VITE_KAKAO_SDK_JS_KEY;
+
+      if (jsKey) {
+        window.Kakao.init(jsKey);
+      } else {
+        console.error("Kakao JavaScript Key가 .env 파일에 설정되지 않았습니다.");
+      }
+    }
+  }, []);
+
 function App() {
   return (
     <div className="background">

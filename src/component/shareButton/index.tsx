@@ -40,7 +40,7 @@ export const ShareButton = () => {
         },
         buttons: [
           {
-            title: "초대장 보기",
+            title: "청접장 보기",
             link: {
               mobileWebUrl:
                 window.location.protocol +

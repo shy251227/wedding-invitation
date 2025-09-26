@@ -3,23 +3,22 @@ import {
   GROOM_FULLNAME,
   LOCATION,
   WEDDING_DATE,
-} from "../../const"
-import { COVER_IMAGE } from "../../images"
-import { LazyDiv } from "../lazyDiv"
+} from "../../const";
+import { COVER_IMAGE } from "../../images";
+import { LazyDiv } from "../lazyDiv";
+import "./index.scss";
 
 const DAY_OF_WEEK = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-]
+  "Sunday", "Monday", "Tuesday", "Wednesday",
+  "Thursday", "Friday", "Saturday",
+];
 
-export const Cover = () => {
+export const Cover = ({ isCoverOff, onCoverClick }) => {
   return (
-    <LazyDiv className="card cover">
+    <LazyDiv
+      className={`card cover ${isCoverOff ? "off" : ""}`}
+      onClick={onCoverClick}
+    >
       <div className="wedding-date">
         {WEDDING_DATE.format("YYYY")}
         <div className="divider" />
@@ -44,5 +43,5 @@ export const Cover = () => {
       </div>
       <div className="info">{LOCATION}</div>
     </LazyDiv>
-  )
-}
+  );
+};

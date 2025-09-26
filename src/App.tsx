@@ -30,11 +30,11 @@ function App() {
   const [isCoverOff, setIsCoverOff] = useState(false);
 
   // Cover를 클릭했을 때 실행될 함수
-  const handleCoverClick = () => {
-    // ✅ 아래 alert 한 줄을 '반드시' 추가해주세요.
-    alert("커버가 클릭되었습니다!");
+const handleCoverClick = () => {
+  // ✅ 아래 alert 코드를 반드시 삭제해주세요.
+  // alert("커버가 클릭되었습니다!");
 
-    if (isCoverOff) return; // 이미 열렸으면 중복 실행 방지
+  if (isCoverOff) return;
 
     audioRef.current?.play()
       .then(() => {

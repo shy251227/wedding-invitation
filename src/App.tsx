@@ -33,36 +33,38 @@ function App() {
   const handleCoverClick = () => {
     if (isCoverOff) return; // 이미 열렸으면 중복 실행 방지
 
-    const audio = audioRef.current;
-    if (audio) {
-      // 클릭과 동시에 바로 재생을 시도 (가장 확실한 방법)
-      audio.play()
-        .then(() => {
-          // 재생 성공 시에만 상태를 업데이트합니다.
-          setIsPlay(true);
-          setIsCoverOff(true);
-        })
-        .catch(error => {
-          // 실패 시 콘솔에 로그를 남겨 원인을 파악합니다.
-          console.error("음악 재생 실패 (브라우저 정책 위반 가능):", error);
-        });
-    }
+    audioRef.current?.play()
+      .then(() => {
+        // ✅ 재생에 '성공'했을 때만 상태를 변경합니다.
+        setIsPlay(true);
+        setIsCoverOff(true);
+      })
+      .catch(error => {
+        console.error("커버 클릭 후 음악 재생 실패:", error);
+      });
   };
 
   // BGM 아이콘을 클릭했을 때 실행될 함수
   const toggleBGM = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      if (isPlay) {
-        audio.pause();
-      } else {
-        audio.play();
-      }
-      setIsPlay(!isPlay);
+    if (!audioRef.current) return;
+
+    if (isPlay) {
+      audioRef.current.pause();
+      setIsPlay(false); // 아이콘 상태를 즉시 변경
+    } else {
+      audioRef.current.play()
+        .then(() => {
+          // ✅ 여기서도 재생에 '성공'했을 때만 아이콘 상태를 변경합니다.
+          setIsPlay(true);
+        })
+        .catch(error => {
+          console.error("BGM 토글 후 음악 재생 실패:", error);
+        });
     }
   };
   // --- BGM 로직 끝 ---
 
+  // --- Kakao SDK 초기화 로직 (이 부분이 누락되었습니다) ---
   useEffect(() => {
     const kakaoJavascriptKey = import.meta.env.VITE_KAKAO_SDK_JS_KEY;
     if (kakaoJavascriptKey && window.Kakao && !window.Kakao.isInitialized()) {
@@ -73,21 +75,14 @@ function App() {
 
   return (
     <div className="background">
-      {/* audio 태그를 눈에 보이는 곳에 직접 배치하고 ref로 관리합니다. */}
       <audio ref={audioRef} src={musicPath} loop preload="auto" />
-
       <BGEffect />
-
-      {/* BGMPlayer에게 현재 상태와 제어 함수를 props로 내려줍니다. */}
       <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
-
       <div className="card-view">
         <LazyDiv className="card-group">
-          {/* Cover에게 현재 상태와 제어 함수를 props로 내려줍니다. */}
           <Cover isCoverOff={isCoverOff} onCoverClick={handleCoverClick} />
           <Invitation />
         </LazyDiv>
-
         <LazyDiv className="card-group">
           <Calendar />
           <Gallery />

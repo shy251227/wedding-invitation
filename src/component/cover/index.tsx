@@ -14,10 +14,10 @@ const DAY_OF_WEEK = [
 ];
 
 /**
- * 웹사이트의 메인 커버를 표시하는 프레젠테이션 컴포넌트입니다.
- * @param {object} props - 컴포넌트 프로퍼티
- * @param {boolean} props.isCoverOff - 커버가 사라지는 애니메이션을 적용할지 여부
- * @param {Function} props.onCoverClick - 커버가 클릭되었을 때 호출될 함수
+ * 메인 커버 UI를 담당하는 단순한 컴포넌트입니다.
+ * @param {object} props - 상위 컴포넌트로부터 전달받는 속성
+ * @param {boolean} props.isCoverOff - 커버 애니메이션 적용 여부
+ * @param {Function} props.onCoverClick - 커버 클릭 시 호출될 함수
  */
 export const Cover = ({ isCoverOff, onCoverClick }) => {
   return (

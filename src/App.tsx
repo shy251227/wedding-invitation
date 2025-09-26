@@ -10,6 +10,7 @@ import { Information } from "./component/information"
 import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
+import { BGMPlayer } from "./component/bgmPlayer"
 import { STATIC_ONLY } from "./env"
 
 // TypeScript가 window.Kakao 객체를 인식할 수 있도록 전역 타입으로 선언합니다.
@@ -35,6 +36,10 @@ function App() {
   return (
     <div className="background">
       <BGEffect />
+
+      {/* ✅ BGM 플레이어를 여기에 추가합니다. */}
+      <BGMPlayer />
+
       <div className="card-view">
         <LazyDiv className="card-group">
           {/* 표지 */}

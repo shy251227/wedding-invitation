@@ -1,16 +1,16 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import App from "./App"
-import { ModalProvider } from "./component/modal"
-import { StoreProvider } from "./component/store"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { StoreProvider } from "./component/store"; // ✅ StoreProvider를 가져옵니다.
+import { ModalProvider } from "./component/modal";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
-root.render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ModalProvider>
-      <StoreProvider>
+    {/* ✅ <App /> 전체를 <StoreProvider>로 감싸줍니다. */}
+    <StoreProvider>
+      <ModalProvider>
         <App />
-      </StoreProvider>
-    </ModalProvider>
-  </React.StrictMode>,
-)
+      </ModalProvider>
+    </StoreProvider>
+  </React.StrictMode>
+);

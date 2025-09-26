@@ -31,11 +31,13 @@ function App() {
 
   // Cover를 클릭했을 때 실행될 함수
   const handleCoverClick = () => {
+    // ✅ 아래 alert 한 줄을 '반드시' 추가해주세요.
+    alert("커버가 클릭되었습니다!");
+
     if (isCoverOff) return; // 이미 열렸으면 중복 실행 방지
 
     audioRef.current?.play()
       .then(() => {
-        // ✅ 재생에 '성공'했을 때만 상태를 변경합니다.
         setIsPlay(true);
         setIsCoverOff(true);
       })

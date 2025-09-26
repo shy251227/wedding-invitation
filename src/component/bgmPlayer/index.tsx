@@ -1,45 +1,33 @@
-import React, { useState, useRef, useEffect } from "react"
-import "./index.scss"
+import { useRef, useEffect } from "react";
+import "./index.scss";
+import playIcon from "../../icons/play-icon.png";
+import pauseIcon from "../../icons/pause-icon.png";
+import { useStore } from "../store";
 
-import playIcon from "../../icons/play-icon.png"
-import pauseIcon from "../../icons/pause-icon.png"
-
-// GitHub Pages 경로에 맞게 Vite 환경 변수를 사용하여 최종 경로 생성
-const musicPath = `${import.meta.env.BASE_URL}music/636_fall_in_love.mp3`;
+const musicPath = `${
+  import.meta.env.BASE_URL
+}music/636_Fall_in_Love.mp3`;
 
 export const BGMPlayer = () => {
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null);
+  // ✅ BGM 플레이어는 오직 isPlay 상태만 신경 씁니다.
+  const { isPlay, setIsPlay } = useStore();
 
-  // 자동 재생 시도 로직
   useEffect(() => {
     const audio = audioRef.current;
-    if (audio) {
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(_ => {
-          setIsPlaying(true);
-          console.log("음악 자동 재생 성공");
-        }).catch(error => {
-          setIsPlaying(false);
-          console.log("자동 재생이 브라우저 정책에 의해 차단되었습니다.", error);
-        });
-      }
-    }
-  }, []); // 컴포넌트가 처음 로드될 때 한 번만 실행
+    if (!audio) return;
 
-  // 재생/일시정지 버튼 클릭 함수
-  const togglePlayPause = () => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    if (isPlaying) {
-      audio.pause()
+    if (isPlay) {
+      audio.play().catch(() => setIsPlay(false));
     } else {
-      audio.play()
+      audio.pause();
     }
-    setIsPlaying(!isPlaying)
-  }
+  }, [isPlay, setIsPlay]);
+
+  // ✅ 재생/일시정지 버튼은 isPlay 상태만 껐다 켰다 합니다.
+  const togglePlayPause = () => {
+    setIsPlay(!isPlay);
+  };
 
   return (
     <>
@@ -47,11 +35,11 @@ export const BGMPlayer = () => {
       <div className="bgm-player">
         <button onClick={togglePlayPause} className="control-button">
           <img
-            src={isPlaying ? pauseIcon : playIcon}
-            alt={isPlaying ? "Pause BGM" : "Play BGM"}
+            src={isPlay ? pauseIcon : playIcon}
+            alt={isPlay ? "Pause BGM" : "Play BGM"}
           />
         </button>
       </div>
     </>
-  )
-}
+  );
+};

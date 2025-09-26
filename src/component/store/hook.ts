@@ -49,3 +49,4 @@ export const useKakao = () => {
 
   return kakao
 }
+export const useStore = () => useContext(StoreContext)

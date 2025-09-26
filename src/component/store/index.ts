@@ -1,2 +1,3 @@
 export { StoreProvider } from "./provider"
-export { useNaver, useKakao } from "./hook"
+// ✅ useStore를 수출 목록에 추가합니다.
+export { useNaver, useKakao, useStore } from "./hook"

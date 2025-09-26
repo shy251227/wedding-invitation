@@ -6,7 +6,7 @@ import { useStore } from "../store";
 
 const musicPath = `${
   import.meta.env.BASE_URL
-}music/636_Fall_in_Love.mp3`;
+}music/635_Fall_in_Love.mp3`;
 
 export const BGMPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -43,7 +43,8 @@ export const BGMPlayer = () => {
 
   return (
     <>
-      <audio ref={audioRef} src={musicPath} loop />
+      {/* ✅ audio 태그에 preload="auto"를 추가합니다. */}
+      <audio ref={audioRef} src={musicPath} loop preload="auto" />
       <div className="bgm-player">
         <button onClick={togglePlayPause} className="control-button">
           <img

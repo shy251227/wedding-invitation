@@ -1,18 +1,37 @@
 import React, { useState, useRef, useEffect } from "react"
-import "./index.scss" // 스타일 파일을 import 합니다.
+import "./index.scss"
 
-// 아이콘은 직접 준비하시거나, 텍스트/이모지를 사용하셔도 좋습니다.
 import playIcon from "../../icons/play-icon.png"
 import pauseIcon from "../../icons/pause-icon.png"
 
-export const BGMPlayer = () => {
-  // 오디오 요소에 접근하기 위한 ref
-  const audioRef = useRef<HTMLAudioElement>(null)
+const musicPath = `${import.meta.env.BASE_URL}music/636_fall_in_love.mp3`;
 
-  // 재생 상태를 관리하기 위한 state
+export const BGMPlayer = () => {
+  const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // 재생/일시정지 토글 함수
+  // ✅ 컴포넌트가 마운트될 때 한 번만 실행됩니다.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      // play() 함수는 Promise를 반환합니다.
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          // 자동 재생이 성공했을 때
+          setIsPlaying(true);
+          console.log("음악이 자동 재생되었습니다.");
+        })
+        .catch(error => {
+          // 자동 재생이 브라우저에 의해 차단되었을 때
+          setIsPlaying(false);
+          console.log("자동 재생이 차단되었습니다:", error);
+        });
+      }
+    }
+  }, []); // 빈 배열을 전달하여 한 번만 실행되도록 함
+
   const togglePlayPause = () => {
     const audio = audioRef.current
     if (!audio) return
@@ -20,34 +39,18 @@ export const BGMPlayer = () => {
     if (isPlaying) {
       audio.pause()
     } else {
-      audio.play().catch(error => {
-        // 사용자가 상호작용하기 전에 자동재생이 차단될 경우를 대비
-        console.log("Autoplay was prevented:", error)
-      })
+      audio.play()
     }
     setIsPlaying(!isPlaying)
   }
 
-  // 컴포넌트가 처음 로드될 때 자동 재생 시도
-  useEffect(() => {
-    // 최신 브라우저에서는 사용자의 상호작용 없이는 자동 재생이 막히는 경우가 많습니다.
-    // 그래서 버튼을 한 번 눌러야 재생이 시작되는 것이 일반적입니다.
-    // 여기서는 일단 시도만 해보고, 실패하면 사용자가 버튼을 누를 때 재생됩니다.
-    setTimeout(() => {
-      togglePlayPause()
-    }, 1000); // 1초 후 자동 재생 시도
-  }, [])
-
   return (
     <>
-      {/* 실제 오디오 파일 (화면에는 보이지 않음) */}
-      <audio ref={audioRef} src="/music/636_Fall_in_Love.mp3" loop />
-
-      {/* 재생/일시정지 컨트롤 버튼 */}
+      <audio ref={audioRef} src={musicPath} loop />
       <div className="bgm-player">
         <button onClick={togglePlayPause} className="control-button">
           <img
-            src={isPlaying ? pauseIcon : playIcon}
+            src={isPlaying ? pauseIcon : playIcon} // 아이콘 순서를 원래대로 되돌렸습니다.
             alt={isPlaying ? "Pause BGM" : "Play BGM"}
           />
         </button>

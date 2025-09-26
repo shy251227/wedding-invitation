@@ -16,27 +16,23 @@ export const BGMPlayer = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    console.log("BGMPlayer: isPlay 상태가 변경되었습니다. 현재 값:", isPlay);
-
     if (isPlay) {
-      console.log("BGMPlayer: 음악 재생을 시도합니다...");
+      console.log("[BGMPlayer] 'isPlay'가 true이므로, 음악 재생을 시도합니다.");
       const playPromise = audio.play();
-
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // 재생에 성공했을 때
-            console.log("BGMPlayer: 음악 재생에 성공했습니다.");
+            console.log("[BGMPlayer] 음악 재생에 성공했습니다.");
           })
           .catch((error) => {
-            // 재생에 실패했을 때 (가장 중요한 부분!)
-            console.error("BGMPlayer: 음악 재생에 실패했습니다. 오류:", error);
-            // 재생에 실패했으므로, isPlay 상태를 다시 false로 되돌려 버튼 모양을 원래대로 맞춥니다.
-            setIsPlay(false);
+            console.error(
+              "[BGMPlayer] 음악 재생에 실패했습니다. (브라우저 정책 위반일 가능성이 높습니다) 오류:",
+              error
+            );
+            setIsPlay(false); // 실패 시, 버튼 모양을 원래대로 돌리기 위해 상태를 동기화합니다.
           });
       }
     } else {
-      console.log("BGMPlayer: 음악을 일시 정지합니다.");
       audio.pause();
     }
   }, [isPlay, setIsPlay]);

@@ -1,52 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useContext, useEffect } from "react"
-import { StoreContext } from "./context"
-import { KAKAO_SDK_JS_KEY, NAVER_MAP_CLIENT_ID } from "../../env"
+import { useContext, useEffect } from "react";
+import { StoreContext } from "./context";
+import { KAKAO_SDK_JS_KEY, NAVER_MAP_CLIENT_ID } from "../../env";
 
-const NAVER_MAP_URL = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}`
-const KAKAO_SDK_URL = "/kakao.min.js"
+const NAVER_MAP_URL = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_MAP_CLIENT_ID}`;
+const KAKAO_SDK_URL = "/kakao.min.js";
 
 export const useNaver = () => {
-  const { naver, setNaver } = useContext(StoreContext)
+  const { naver, setNaver } = useContext(StoreContext);
   useEffect(() => {
     if (!NAVER_MAP_CLIENT_ID) {
-      return
+      return;
     }
 
     if (!document.querySelector(`script[src="${NAVER_MAP_URL}"]`)) {
-      const script = document.createElement("script")
-      script.src = NAVER_MAP_URL
-      document.head.appendChild(script)
+      const script = document.createElement("script");
+      script.src = NAVER_MAP_URL;
+      document.head.appendChild(script);
       script.addEventListener("load", () => {
-        setNaver((window as any).naver)
-      })
+        setNaver((window as any).naver);
+      });
     }
-  }, [setNaver])
+  }, [setNaver]);
 
-  return naver
-}
+  return naver;
+};
 
 export const useKakao = () => {
-  const { kakao, setKakao } = useContext(StoreContext)
+  const { kakao, setKakao } = useContext(StoreContext);
   useEffect(() => {
     if (!KAKAO_SDK_JS_KEY) {
-      return
+      return;
     }
 
     if (!document.querySelector(`script[src="${KAKAO_SDK_URL}"]`)) {
-      const script = document.createElement("script")
+      const script = document.createElement("script");
       script.addEventListener("load", () => {
         if (!(window as any).Kakao.isInitialized()) {
-          ;(window as any).Kakao.init(KAKAO_SDK_JS_KEY)
+          (window as any).Kakao.init(KAKAO_SDK_JS_KEY);
         }
-        setKakao((window as any).Kakao)
-      })
-      script.src = KAKAO_SDK_URL
-      document.head.appendChild(script)
+        setKakao((window as any).Kakao);
+      });
+      script.src = KAKAO_SDK_URL;
+      document.head.appendChild(script);
     }
-  }, [setKakao])
+  }, [setKakao]);
 
-  return kakao
-}
-export const useStore = () => useContext(StoreContext)
+  return kakao;
+};
+
+// ✅ 다른 컴포넌트들이 Store의 데이터에 쉽게 접근할 수 있도록 통로를 만들어줍니다.
+export const useStore = () => useContext(StoreContext);

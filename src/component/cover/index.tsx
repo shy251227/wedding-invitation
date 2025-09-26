@@ -15,18 +15,23 @@ const DAY_OF_WEEK = [
 ];
 
 export const Cover = () => {
-  // ✅ 게시판에서 필요한 기능들을 가져옵니다.
   const { isCoverOff, setIsCoverOff, setIsPlay } = useStore();
 
   const handleClick = () => {
-    // 클릭되면 '커버 사라져라!' 라고 상태를 변경하고,
+    // 진단용 로그: 클릭 이벤트가 실행되는지 확인합니다.
+    console.log("[Cover] handleClick: 커버가 클릭되었습니다.");
+
+    // 이미 커버가 열려있으면 중복 실행을 방지합니다.
+    if (isCoverOff) return;
+
+    // "커버 열어줘!" 신호 보내기
     setIsCoverOff(true);
-    // 동시에 '음악 켜져라!' 라고 상태를 변경합니다.
+    // "음악 재생해줘!" 신호 보내기
     setIsPlay(true);
+    console.log("[Cover] handleClick: isCoverOff와 isPlay 상태를 true로 변경했습니다.");
   };
 
   return (
-    // ✅ className은 isCoverOff 상태에만 반응하도록 하고, 클릭 이벤트를 연결합니다.
     <LazyDiv
       className={`card cover ${isCoverOff ? "off" : ""}`}
       onClick={handleClick}

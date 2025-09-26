@@ -4,34 +4,31 @@ import "./index.scss"
 import playIcon from "../../icons/play-icon.png"
 import pauseIcon from "../../icons/pause-icon.png"
 
+// GitHub Pages 경로에 맞게 Vite 환경 변수를 사용하여 최종 경로 생성
 const musicPath = `${import.meta.env.BASE_URL}music/636_fall_in_love.mp3`;
 
 export const BGMPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // ✅ 컴포넌트가 마운트될 때 한 번만 실행됩니다.
+  // 자동 재생 시도 로직
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      // play() 함수는 Promise를 반환합니다.
       const playPromise = audio.play();
-
       if (playPromise !== undefined) {
         playPromise.then(_ => {
-          // 자동 재생이 성공했을 때
           setIsPlaying(true);
-          console.log("음악이 자동 재생되었습니다.");
-        })
-        .catch(error => {
-          // 자동 재생이 브라우저에 의해 차단되었을 때
+          console.log("음악 자동 재생 성공");
+        }).catch(error => {
           setIsPlaying(false);
-          console.log("자동 재생이 차단되었습니다:", error);
+          console.log("자동 재생이 브라우저 정책에 의해 차단되었습니다.", error);
         });
       }
     }
-  }, []); // 빈 배열을 전달하여 한 번만 실행되도록 함
+  }, []); // 컴포넌트가 처음 로드될 때 한 번만 실행
 
+  // 재생/일시정지 버튼 클릭 함수
   const togglePlayPause = () => {
     const audio = audioRef.current
     if (!audio) return
@@ -50,7 +47,7 @@ export const BGMPlayer = () => {
       <div className="bgm-player">
         <button onClick={togglePlayPause} className="control-button">
           <img
-            src={isPlaying ? pauseIcon : playIcon} // 아이콘 순서를 원래대로 되돌렸습니다.
+            src={isPlaying ? pauseIcon : playIcon}
             alt={isPlaying ? "Pause BGM" : "Play BGM"}
           />
         </button>

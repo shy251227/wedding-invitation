@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Cover } from "./component/cover";
 import { Location } from "./component/location";
 import "./App.scss";
@@ -13,7 +13,10 @@ import { ShareButton } from "./component/shareButton";
 import { BGMPlayer } from "./component/bgmPlayer";
 import { STATIC_ONLY } from "./env";
 
-// TypeScript가 window.Kakao 객체를 인식할 수 있도록 전역 타입으로 선언합니다.
+const musicPath = `${
+  import.meta.env.BASE_URL
+}music/635_Fall_in_Love.mp3`;
+
 declare global {
   interface Window {
     Kakao: any;
@@ -21,12 +24,47 @@ declare global {
 }
 
 function App() {
-  // 앱이 처음 렌더링될 때 카카오 SDK를 초기화합니다.
-  useEffect(() => {
-    // .env 파일에서 Vite 환경 변수를 가져옵니다. (VITE_ 접두사 필요)
-    const kakaoJavascriptKey = import.meta.env.VITE_KAKAO_SDK_JS_KEY;
+  // --- BGM 중앙 관제 로직 ---
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlay, setIsPlay] = useState(false);
+  const [isCoverOff, setIsCoverOff] = useState(false);
 
-    // 키가 존재하고, window.Kakao 객체가 있으며, 아직 초기화되지 않았을 때 초기화를 실행합니다.
+  // Cover를 클릭했을 때 실행될 함수
+  const handleCoverClick = () => {
+    if (isCoverOff) return; // 이미 열렸으면 중복 실행 방지
+
+    const audio = audioRef.current;
+    if (audio) {
+      // 클릭과 동시에 바로 재생을 시도 (가장 확실한 방법)
+      audio.play()
+        .then(() => {
+          // 재생 성공 시에만 상태를 업데이트합니다.
+          setIsPlay(true);
+          setIsCoverOff(true);
+        })
+        .catch(error => {
+          // 실패 시 콘솔에 로그를 남겨 원인을 파악합니다.
+          console.error("음악 재생 실패 (브라우저 정책 위반 가능):", error);
+        });
+    }
+  };
+
+  // BGM 아이콘을 클릭했을 때 실행될 함수
+  const toggleBGM = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      if (isPlay) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlay(!isPlay);
+    }
+  };
+  // --- BGM 로직 끝 ---
+
+  useEffect(() => {
+    const kakaoJavascriptKey = import.meta.env.VITE_KAKAO_SDK_JS_KEY;
     if (kakaoJavascriptKey && window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(kakaoJavascriptKey);
       console.log("Kakao SDK has been initialized.");
@@ -34,15 +72,19 @@ function App() {
   }, []);
 
   return (
-    // ❌ <StoreProvider>를 여기서 완전히 삭제합니다.
     <div className="background">
+      {/* audio 태그를 눈에 보이는 곳에 직접 배치하고 ref로 관리합니다. */}
+      <audio ref={audioRef} src={musicPath} loop preload="auto" />
+
       <BGEffect />
 
-      <BGMPlayer />
+      {/* BGMPlayer에게 현재 상태와 제어 함수를 props로 내려줍니다. */}
+      <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
 
       <div className="card-view">
         <LazyDiv className="card-group">
-          <Cover />
+          {/* Cover에게 현재 상태와 제어 함수를 props로 내려줍니다. */}
+          <Cover isCoverOff={isCoverOff} onCoverClick={handleCoverClick} />
           <Invitation />
         </LazyDiv>
 
@@ -50,16 +92,13 @@ function App() {
           <Calendar />
           <Gallery />
         </LazyDiv>
-
         <LazyDiv className="card-group">
           <Location />
         </LazyDiv>
-
         <LazyDiv className="card-group">
           <Information />
           {!STATIC_ONLY && <GuestBook />}
         </LazyDiv>
-
         <ShareButton />
       </div>
     </div>

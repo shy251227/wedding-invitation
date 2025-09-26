@@ -6,7 +6,6 @@ import {
 } from "../../const";
 import { COVER_IMAGE } from "../../images";
 import { LazyDiv } from "../lazyDiv";
-import { useStore } from "../store";
 import "./index.scss";
 
 const DAY_OF_WEEK = [
@@ -14,27 +13,17 @@ const DAY_OF_WEEK = [
   "Thursday", "Friday", "Saturday",
 ];
 
-export const Cover = () => {
-  const { isCoverOff, setIsCoverOff, setIsPlay } = useStore();
-
-  const handleClick = () => {
-    // 진단용 로그: 클릭 이벤트가 실행되는지 확인합니다.
-    console.log("[Cover] handleClick: 커버가 클릭되었습니다.");
-
-    // 이미 커버가 열려있으면 중복 실행을 방지합니다.
-    if (isCoverOff) return;
-
-    // "커버 열어줘!" 신호 보내기
-    setIsCoverOff(true);
-    // "음악 재생해줘!" 신호 보내기
-    setIsPlay(true);
-    console.log("[Cover] handleClick: isCoverOff와 isPlay 상태를 true로 변경했습니다.");
-  };
-
+/**
+ * 웹사이트의 메인 커버를 표시하는 프레젠테이션 컴포넌트입니다.
+ * @param {object} props - 컴포넌트 프로퍼티
+ * @param {boolean} props.isCoverOff - 커버가 사라지는 애니메이션을 적용할지 여부
+ * @param {Function} props.onCoverClick - 커버가 클릭되었을 때 호출될 함수
+ */
+export const Cover = ({ isCoverOff, onCoverClick }) => {
   return (
     <LazyDiv
       className={`card cover ${isCoverOff ? "off" : ""}`}
-      onClick={handleClick}
+      onClick={onCoverClick}
     >
       <div className="wedding-date">
         {WEDDING_DATE.format("YYYY")}

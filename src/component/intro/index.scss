@@ -1,0 +1,53 @@
+.intro-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+
+  .content {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 40px;
+
+    .names, .title {
+      color: #333;
+      // 1. 커서(border-right)와 깜빡임(animation)을 제거합니다.
+      white-space: nowrap;
+      margin: 0 auto;
+    }
+
+    .names {
+      font-family: 'Cafe24', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      min-height: 2.5rem;
+    }
+
+    .title {
+      font-family: 'MapoGoldenPierA', sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      min-height: 3rem;
+    }
+  }
+}
+
+.intro-container.fade-out {
+  opacity: 0;
+}
+
+// 2. 사용하지 않는 blink-caret 키프레임을 삭제합니다.
+/*
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #8d7b68; }
+}
+*/

@@ -12,6 +12,7 @@ import { LazyDiv } from "./component/lazyDiv";
 import { ShareButton } from "./component/shareButton";
 import { BGMPlayer } from "./component/bgmPlayer";
 import { STATIC_ONLY } from "./env";
+import Intro from "./component/intro";
 
 const musicPath = `${
   import.meta.env.BASE_URL
@@ -26,56 +27,60 @@ declare global {
 function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlay, setIsPlay] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
+  const handleEnter = () => {
+    setShowIntro(false);
+    audioRef.current?.play().then(() => {
+      setIsPlay(true);
+    });
+  };
 
-  // BGM 아이콘을 클릭했을 때 실행될 함수
   const toggleBGM = () => {
     if (!audioRef.current) return;
-
     if (isPlay) {
       audioRef.current.pause();
-      setIsPlay(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlay(true);
-      }).catch(error => {
-        console.error("BGM 아이콘 클릭 후 재생 실패:", error);
-      });
+      audioRef.current.play();
     }
+    setIsPlay(!isPlay);
   };
 
   useEffect(() => {
     const kakaoJavascriptKey = import.meta.env.VITE_KAKAO_SDK_JS_KEY;
     if (kakaoJavascriptKey && window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(kakaoJavascriptKey);
-      console.log("Kakao SDK has been initialized.");
     }
   }, []);
 
   return (
-    <div className="background">
-      <audio ref={audioRef} src={musicPath} loop preload="auto" />
-      <BGEffect />
-      <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
-      <div className="card-view">
-        <LazyDiv className="card-group">
-          {/* ▼▼▼ 3. isCoverOff와 onCoverClick 속성을 아래와 같이 수정합니다. ▼▼▼ */}
-          <Cover isCoverOff={false} />
-          {/* ▲▲▲ 3. 위와 같이 수정합니다. ▲▲▲ */}
-          <Invitation />
-        </LazyDiv>
-        <LazyDiv className="card-group">
-          <Calendar />
-          <Gallery />
-        </LazyDiv>
-        <LazyDiv className="card-group">
-          <Location />
-        </LazyDiv>
-        <LazyDiv className="card-group">
-          <Information />
-          {!STATIC_ONLY && <GuestBook />}
-        </LazyDiv>
-        <ShareButton />
+    <div className="App">
+      {showIntro && <Intro onEnter={handleEnter} />}
+
+      <div className={`background ${showIntro ? 'blurred' : ''}`}>
+        <audio ref={audioRef} src={musicPath} loop preload="auto" />
+        <BGEffect />
+        <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
+        <div className="card-view">
+          <LazyDiv className="card-group">
+            {/* ▼▼▼ 이 부분을 isCoverOff={false} 로 수정합니다! ▼▼▼ */}
+            <Cover isCoverOff={false} />
+            {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
+            <Invitation />
+          </LazyDiv>
+          <LazyDiv className="card-group">
+            <Calendar />
+            <Gallery />
+          </LazyDiv>
+          <LazyDiv className="card-group">
+            <Location />
+          </LazyDiv>
+          <LazyDiv className="card-group">
+            <Information />
+            {!STATIC_ONLY && <GuestBook />}
+          </LazyDiv>
+          <ShareButton />
+        </div>
       </div>
     </div>
   );

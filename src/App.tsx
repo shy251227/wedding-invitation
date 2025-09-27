@@ -26,24 +26,7 @@ declare global {
 function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlay, setIsPlay] = useState(false);
-  const [isCoverOff, setIsCoverOff] = useState(false);
 
-  // Cover를 클릭했을 때 실행될 함수
-  const handleCoverClick = () => {
-    if (isCoverOff) return; // 이미 열렸으면 중복 실행 방지
-
-    audioRef.current?.play()
-      .then(() => {
-        // 재생에 '성공'했을 때만 상태를 업데이트합니다.
-        setIsPlay(true);
-        setIsCoverOff(true);
-      })
-      .catch(error => {
-        // 음악 재생에 실패하더라도 청첩장은 볼 수 있도록 처리합니다.
-        console.error("커버 클릭 후 음악 재생 실패:", error);
-        setIsCoverOff(true);
-      });
-  };
 
   // BGM 아이콘을 클릭했을 때 실행될 함수
   const toggleBGM = () => {
@@ -76,7 +59,9 @@ function App() {
       <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
       <div className="card-view">
         <LazyDiv className="card-group">
-          <Cover isCoverOff={isCoverOff} onCoverClick={handleCoverClick} />
+          {/* ▼▼▼ 3. isCoverOff와 onCoverClick 속성을 아래와 같이 수정합니다. ▼▼▼ */}
+          <Cover isCoverOff={false} />
+          {/* ▲▲▲ 3. 위와 같이 수정합니다. ▲▲▲ */}
           <Invitation />
         </LazyDiv>
         <LazyDiv className="card-group">

@@ -26,7 +26,7 @@ export const KMAP_PLACE_ID = 1099072690
 
 //<정하윤> <정길모> <김차연>
 export const BRIDE_FULLNAME = "정00"
-export const BRIDE_FIRSTNAME = "00"
+export const BRIDE_FIRSTNAME = "하윤"
 export const BRIDE_TITLE = "딸"
 export const BRIDE_FATHER = "정00"
 export const BRIDE_MOTHER = "김00"
@@ -52,7 +52,7 @@ export const BRIDE_INFO = [
 ]
 
 export const GROOM_FULLNAME = "차00"
-export const GROOM_FIRSTNAME = "00"
+export const GROOM_FIRSTNAME = "승훈"
 export const GROOM_TITLE = "아들"
 export const GROOM_FATHER = "차00"
 export const GROOM_MOTHER = "남00"

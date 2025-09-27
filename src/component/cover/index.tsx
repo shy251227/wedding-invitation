@@ -34,9 +34,9 @@ export const Cover = ({ isCoverOff, onCoverClick }) => {
       </div>
       <div className="subtitle">Save the date for the wedding of</div>
       <div className="names">
-        {GROOM_FULLNAME}
-        <div className="divider" />
         {BRIDE_FULLNAME}
+        <div className="divider" />
+        {GROOM_FULLNAME}
       </div>
       <div className="info">
         {WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시")}

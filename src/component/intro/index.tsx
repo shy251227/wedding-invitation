@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.scss';
-import { GROOM_FULLNAME, BRIDE_FULLNAME } from '../../const';
+import { GROOM_FIRSTNAME, BRIDE_FIRSTNAME } from '../../const';
 
 interface IntroProps {
   onEnter: () => void;
@@ -22,7 +22,7 @@ const Intro: React.FC<IntroProps> = ({ onEnter }) => {
   useEffect(() => {
     // 타이핑 효과를 처리하는 비동기 함수
     const typeAll = async () => {
-      const nameTarget = `${GROOM_FULLNAME} & ${BRIDE_FULLNAME}`;
+      const nameTarget = `${BRIDE_FIRSTNAME} ❤️ ${GROOM_FIRSTNAME}`;
       const titleTarget = '저희, 결혼합니다';
 
       await type(nameTarget, setNamesText); // 이름 먼저 타이핑

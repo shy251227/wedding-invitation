@@ -22,7 +22,7 @@ const Intro: React.FC<IntroProps> = ({ onEnter }) => {
   useEffect(() => {
     // 타이핑 효과를 처리하는 비동기 함수
     const typeAll = async () => {
-      const nameTarget = `${BRIDE_FIRSTNAME} ❤️ ${GROOM_FIRSTNAME}`;
+      const nameTarget = `${GROOM_FIRSTNAME} ❤️ ${BRIDE_FIRSTNAME}`;
       const titleTarget = '저희, 결혼합니다';
 
       await type(nameTarget, setNamesText); // 이름 먼저 타이핑

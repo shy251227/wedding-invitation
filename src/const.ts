@@ -25,11 +25,11 @@ export const NMAP_PLACE_ID = 1946480978
 export const KMAP_PLACE_ID = 1099072690
 
 //<정하윤> <정길모> <김차연>
-export const BRIDE_FULLNAME = "정00"
+export const BRIDE_FULLNAME = "정하윤"
 export const BRIDE_FIRSTNAME = "하윤"
 export const BRIDE_TITLE = "딸"
-export const BRIDE_FATHER = "정00"
-export const BRIDE_MOTHER = "김00"
+export const BRIDE_FATHER = "정길모"
+export const BRIDE_MOTHER = "김차연"
 export const BRIDE_INFO = [
   {
     relation: "신부",
@@ -51,28 +51,28 @@ export const BRIDE_INFO = [
   },
 ]
 
-export const GROOM_FULLNAME = "차00"
+export const GROOM_FULLNAME = "차승훈"
 export const GROOM_FIRSTNAME = "승훈"
 export const GROOM_TITLE = "아들"
-export const GROOM_FATHER = "차00"
-export const GROOM_MOTHER = "남00"
+export const GROOM_FATHER = "차호준"
+export const GROOM_MOTHER = "남미현"
 export const GROOM_INFO = [
   {
     relation: "신랑",
     name: GROOM_FULLNAME,
-    phone: "010-0000-0000",
+    phone: "010-5513-7567",
     account: "하나은행 00000000000000",
   },
   {
     relation: "신랑 아버지",
     name: GROOM_FATHER,
-    phone: "010-0000-0000",
+    phone: "010-6653-7567",
     account: "신한은행 000000000000",
   },
   {
     relation: "신랑 어머니",
     name: GROOM_MOTHER,
-    phone: "010-0000-0000",
+    phone: "010-5128-7567",
     account: "국민은행 000000000000",
   },
 ]

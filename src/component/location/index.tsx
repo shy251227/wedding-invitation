@@ -54,7 +54,7 @@ export const Location = () => {
           <div className="content">
             네이버 지도, 카카오 네비, 티맵 등 이용시
             <br />
-            <b>W시티컨베션 울산 웨딩홀</b> 검색
+            <b>울산 W시티 컨벤션</b> 검색
             <br />
             <br />
             신선도원몰 <b>별관 1층부터 6층까지</b> 주차 가능합니다.

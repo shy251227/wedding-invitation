@@ -142,9 +142,17 @@ npm run build
 - [Hotfix] Naver Map API의 최신 업데이트 반영
 
 ## 개인적을 추가 해서 만든 사양
-
 - 지도 표시 방법 변경으로 코드 수정
 - 카카오톡 공유하기 기능 적용안되는 부분 수정
 - BGM 추가
 - 인트로 생성
 - 방명록 추가&참석의사 전달하기 삭제
+
+## 개인적인 설명서
+- src/information/index.tsx >> 식사 안내, 마음전하기 
+- src/intro/index.tsx >> 인트로 화면
+- src/invitation/index.tsx >> 초대 문구
+- src/location/index.tsx >> 위치
+- src/location/map.tsx >> 네이버 지도 api
+- src/shareButton/index.tsx >> 카카오톡 공유하기
+- src/const.ts >> 정보

@@ -10,6 +10,7 @@ import image8 from "./image8.png"
 import image9 from "./image9.png"
 import image10 from "./image10.png"
 import image11 from "./image11.png"
+import image12 from "./image12.png"
 
 export const COVER_IMAGE = coverImage
 
@@ -25,4 +26,5 @@ export const GALLERY_IMAGES = [
   image9,
   image10,
   image11,
+  image12,
 ]

@@ -165,7 +165,7 @@ $transition-duration: 0.3s;
       width: 100%;
       overflow: hidden;
       border-radius: 10px;
-      height: 600px;
+      height: 500px;
       background-color: #f7f7f7;
 
       .carousel-list {
@@ -299,7 +299,7 @@ $transition-duration: 0.3s;
 
   // 👇 --- [이 부분 추가!] --- 👇
   .footer .button {
-    padding: 8px 0; // 버튼의 상하 여백을 줄입니다.
+    padding: 1px 0; // 버튼의 상하 여백을 줄입니다.
     font-size: 20px;   // 폰트 크기를 약간 줄입니다.
   }
 }

@@ -14,6 +14,21 @@ import image12 from "./image12.png"
 import image13 from "./image13.png"
 import image14 from "./image14.png"
 import image15 from "./image15.png"
+import image16 from "./image16.png"
+import image17 from "./image17.png"
+import image18 from "./image18.png"
+import image19 from "./image19.png"
+import image20 from "./image20.png"
+import image21 from "./image21.png"
+import image22 from "./image22.png"
+import image23 from "./image23.png"
+import image24 from "./image24.png"
+import image25 from "./image25.png"
+import image26 from "./image26.png"
+import image27 from "./image27.png"
+import image28 from "./image28.png"
+import image29 from "./image29.png"
+import image30 from "./image30.png"
 
 export const COVER_IMAGE = coverImage
 
@@ -33,4 +48,19 @@ export const GALLERY_IMAGES = [
   image13,
   image14,
   image15,
+  image16,
+  image17,
+  image18,
+  image19,
+  image20,
+  image21,
+  image22,
+  image23,
+  image24,
+  image25,
+  image26,
+  image27,
+  image28,
+  image29,
+  image30,
 ]

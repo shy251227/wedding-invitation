@@ -63,9 +63,7 @@ function App() {
         <BGMPlayer isPlay={isPlay} onToggle={toggleBGM} />
         <div className="card-view">
           <LazyDiv className="card-group">
-            {/* ▼▼▼ 이 부분을 isCoverOff={false} 로 수정합니다! ▼▼▼ */}
             <Cover isCoverOff={false} />
-            {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
             <Invitation />
           </LazyDiv>
           <LazyDiv className="card-group">

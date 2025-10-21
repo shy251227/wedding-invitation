@@ -31,6 +31,7 @@ export const ShareButton = () => {
             window.location.host +
             baseUrl +
             "/cover.png",
+            /*▲▲▲public 안에서 수정 하세요▲▲▲*/
           link: {
             mobileWebUrl:
               window.location.protocol + "//" + window.location.host + baseUrl,

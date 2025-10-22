@@ -81,11 +81,6 @@ export const Gallery = () => {
     clickMoveRef.current = clickMove
   }
 
-  // For debugging
-  // useEffect(() => {
-  //   console.log(status)
-  // }, [status])
-
   const click = (
     status: Status,
     clientX: number,
@@ -341,17 +336,6 @@ export const Gallery = () => {
               <ArrowLeft className="arrow right" />
             </div>
           </div>
-        </div>
-        <div className="carousel-indicator">
-          {CAROUSEL_ITEMS.map((_, idx) => (
-            <button
-              key={idx}
-              className={`indicator${idx === slide ? " active" : ""}`}
-              onClick={() =>
-                onIndicatorClick(statusRef.current, slideRef.current, idx)
-              }
-            />
-          ))}
         </div>
       </div>
 
